@@ -3,78 +3,139 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pricing Table</title>
+    <title>Responsive Pricing Table</title>
     <style>
-      .pricing-table {
-        display: flex;
-        justify-content: space-around;
-        margin: 20px;
-      }
-      .pricing-card {
-        border: 1px solid #ccc;
-        border-radius: 8px;
-        padding: 20px;
-        width: 30%;
-        text-align: center;
-      }
-      .pricing-card h2 {
-        margin-top: 0;
-      }
-      .pricing-card ul {
-        list-style-type: none;
+      * {
+        box-sizing: border-box;
+        margin: 0;
         padding: 0;
+        font-family: Arial, sans-serif;
       }
-      .pricing-card ul li {
-        margin: 10px 0;
+
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        background-color: #f4f4f4;
+        padding: 20px;
       }
-      .pricing-card button {
-        background-color: #4caf50;
-        color: white;
-        border: none;
-        padding: 10px 20px;
+
+      .pricing-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+        width: 100%;
+        max-width: 1000px;
+      }
+
+      .pricing-table {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
         text-align: center;
-        text-decoration: none;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        width: 100%;
+        max-width: 300px;
+        transition: transform 0.3s ease-in-out;
+      }
+
+      .pricing-table:hover {
+        transform: scale(1.05);
+      }
+
+      .title {
+        font-size: 22px;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+
+      .price {
+        font-size: 26px;
+        color: #ff598c;
+        margin-bottom: 10px;
+      }
+
+      .features {
+        list-style: none;
+        padding: 0;
+        margin-bottom: 20px;
+      }
+
+      .features li {
+        padding: 8px 0;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .features li:last-child {
+        border-bottom: none;
+      }
+
+      .btn {
         display: inline-block;
+        padding: 12px 24px;
+        background-color: #ff598c;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
         font-size: 16px;
-        margin-top: 20px;
-        cursor: pointer;
-        border-radius: 4px;
+        transition: background 0.3s ease-in-out;
+      }
+
+      .btn:hover {
+        background-color: #e04879;
+      }
+
+      /* Responsive Design */
+      @media (max-width: 768px) {
+        .pricing-container {
+          flex-direction: column;
+          align-items: center;
+        }
+
+        .pricing-table {
+          width: 90%;
+          max-width: 350px;
+        }
       }
     </style>
   </head>
   <body>
-    <div class="pricing-table">
-      <div class="pricing-card">
-        <h2>Silver Pack</h2>
-        <p>$4/month</p>
-        <ul>
+    <div class="pricing-container">
+      <div class="pricing-table">
+        <div class="title">Silver Pack</div>
+        <div class="price">$4/month</div>
+        <ul class="features">
           <li>Deploy in seconds</li>
           <li>Scale up on demand</li>
           <li>
             Run any workload - from mission critical apps to low traffic sites
           </li>
         </ul>
-        <button>Purchase</button>
+        <a href="#" class="btn">Purchase</a>
       </div>
-      <div class="pricing-card">
-        <h2>Gold Pack</h2>
-        <p>$12/month</p>
-        <ul>
+
+      <div class="pricing-table">
+        <div class="title">Gold Pack</div>
+        <div class="price">$12/month</div>
+        <ul class="features">
           <li>Simple, managed Kubernetes built for scale</li>
           <li>Free control plane, free bandwidth allowance, and more</li>
           <li>Automate and optimize to peak performance</li>
         </ul>
-        <button>Purchase</button>
+        <a href="#" class="btn">Purchase</a>
       </div>
-      <div class="pricing-card">
-        <h2>Platinum Pack</h2>
-        <p>$30/month</p>
-        <ul>
+
+      <div class="pricing-table">
+        <div class="title">Platinum Pack</div>
+        <div class="price">$30/month</div>
+        <ul class="features">
           <li>Build, deploy and scale apps quickly</li>
           <li>Fully managed solution, zero infrastructure management</li>
           <li>Highly scalable</li>
         </ul>
-        <button>Purchase</button>
+        <a href="#" class="btn">Purchase</a>
       </div>
     </div>
   </body>
