@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Factor Filter</title>
+  </head>
+  <body>
+    <h1>Filter Numbers by Factor</h1>
+
+    <!-- Input for factor -->
+    <label for="factor">Enter a factor:</label>
+    <input type="number" id="factor" placeholder="Enter factor (e.g., 4)" />
+    <button onclick="fetchMultiples()">Submit</button>
+
+    <!-- Div to display the result -->
+    <div id="result"></div>
+
+    <!-- Instructions to run the server -->
+    <div>
+      <h2>Instructions:</h2>
+      <p>
+        To run this page locally with PHP, you can use the PHP built-in server.
+        Follow these steps:
+      </p>
+      <ol>
+        <li>
+          Make sure you have PHP installed on your computer. You can check by
+          running <code>php -v</code> in your terminal or command prompt.
+        </li>
+        <li>
+          Place this <code>index.html</code> and <code>process.php</code> file
+          in a folder (e.g., <code>factor-filter</code>).
+        </li>
+        <li>
+          Open your terminal or command prompt and navigate to the folder where
+          your files are located. For example:
+          <pre>cd /path/to/your/folder</pre>
+        </li>
+        <li>
+          Start the PHP built-in server by running the following command:
+          <pre>php -S localhost:8000</pre>
+        </li>
+        <li>
+          Open your web browser and go to
+          <a href="http://localhost:8000/index.html" target="_blank"
+            >http://localhost:8000/index.html</a
+          >.
+        </li>
+        <li>You can now enter a factor and see the filtered numbers!</li>
+      </ol>
+    </div>
+
+    <script>
+      // Function to fetch data from PHP using the value from the input
+      function fetchMultiples() {
+        // Get the factor input value
+        const factor = document.getElementById("factor").value;
+
+        // Check if factor is valid
+        if (!factor || factor <= 0) {
+          alert("Please enter a valid factor greater than 0");
+          return;
+        }
+
+        // Use fetch to send the factor to the PHP file with the query parameter
+        fetch(`process.php?factor=${factor}`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        })
+          .then((response) => response.text()) // Parse the response as text
+          .then((data) => {
+            document.getElementById("result").innerHTML = data;
+          })
+          .catch((error) => console.error("Error:", error));
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Answer Comparison</title>
+  </head>
+  <body>
+    <h1>Answer Comparison</h1>
+    <form id="uploadForm" enctype="multipart/form-data">
+      <label for="actualAnswers">Actual Answers CSV:</label>
+      <input
+        type="file"
+        id="actualAnswers"
+        name="actualAnswers"
+        accept=".csv"
+        required
+      />
+      <br /><br />
+      <label for="submittedAnswers">Submitted Answers CSV:</label>
+      <input
+        type="file"
+        id="submittedAnswers"
+        name="submittedAnswers"
+        accept=".csv"
+        required
+      />
+      <br /><br />
+      <button type="submit">Upload</button>
+    </form>
+    <div id="result"></div>
+    <!-- Instructions to run the server -->
+    <div>
+      <h2>Instructions:</h2>
+      <p>
+        To run this page locally with PHP, you can use the PHP built-in server.
+        Follow these steps:
+      </p>
+      <ol>
+        <li>
+          Make sure you have PHP installed on your computer. You can check by
+          running <code>php -v</code> in your terminal or command prompt.
+        </li>
+        <li>
+          Place this <code>index.html</code> and <code>process.php</code> file
+          in a folder
+        </li>
+        <li>
+          Open your terminal or command prompt and navigate to the folder where
+          your files are located. For example:
+          <pre>cd /path/to/your/folder</pre>
+        </li>
+        <li>
+          Start the PHP built-in server by running the following command:
+          <pre>php -S localhost:8000</pre>
+        </li>
+        <li>
+          Open your web browser and go to
+          <a href="http://localhost:8000/index.html" target="_blank"
+            >http://localhost:8000/index.html</a
+          >.
+        </li>
+        <li>You can now enter a factor and see the filtered numbers!</li>
+      </ol>
+    </div>
+    <script>
+      document
+        .getElementById("uploadForm")
+        .addEventListener("submit", function (event) {
+          event.preventDefault();
+
+          const formData = new FormData();
+          formData.append(
+            "actualAnswers",
+            document.getElementById("actualAnswers").files[0]
+          );
+          formData.append(
+            "submittedAnswers",
+            document.getElementById("submittedAnswers").files[0]
+          );
+
+          fetch("process.php", {
+            method: "POST",
+            body: formData,
+          })
+            .then((response) => response.text())
+            .then((data) => {
+              document.getElementById("result").innerHTML = data;
+            })
+            .catch((error) => console.error("Error:", error));
+        });
+    </script>
+  </body>
+</html>
