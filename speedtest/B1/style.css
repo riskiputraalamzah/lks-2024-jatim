@@ -1,0 +1,60 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+body {
+  min-height: 100vh;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+}
+section {
+  overflow: hidden;
+  padding: 1.5rem;
+}
+
+button {
+  border: none;
+  padding: 16px 32px;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  position: relative;
+  /* overflow: hidden; */
+}
+
+.particle-btn {
+  color: #fff;
+  background: #ff598c;
+}
+
+.particle-btn::before,
+.particle-btn::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(
+    circle,
+    rgba(177, 0, 0, 0.5) 10%,
+    transparent 10.01%
+  );
+  background-size: 10% 10%;
+  transform: translate(-50%, -50%) scale(0);
+  transition: transform 0.4s ease-out;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.particle-btn:active::before {
+  transform: translate(-50%, -50%) scale(2.5) rotate(45deg);
+  opacity: 1;
+}
+
+.particle-btn:active::after {
+  transform: translate(-50%, -50%) scale(3) rotate(-45deg);
+  opacity: 1;
+}

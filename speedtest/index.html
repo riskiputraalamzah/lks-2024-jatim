@@ -55,6 +55,9 @@
         flex: 1 1 calc(50% - 20px);
         box-sizing: border-box;
       }
+      .folder-links a.completed {
+        background-color: #28a745;
+      }
       .folder-links a:hover {
         background-color: #0056b3;
         transform: translateY(-2px);
@@ -63,6 +66,25 @@
         margin-top: 20px;
         font-size: 14px;
         color: #777;
+        text-align: center;
+      }
+      .notification {
+        background-color: #ffeb3b;
+        color: #333;
+        padding: 10px;
+        border-radius: 8px;
+        margin-top: 10px;
+        font-weight: bold;
+        animation: blink 1s infinite;
+      }
+      @keyframes blink {
+        0%,
+        100% {
+          opacity: 1;
+        }
+        50% {
+          opacity: 0.5;
+        }
       }
       @media (max-width: 600px) {
         .folder-links a {
@@ -73,12 +95,12 @@
   </head>
   <body>
     <div class="container">
-      <h1>Welcome to LKS Jatim 2024 Practice</h1>
+      <h1>Welcome to LKS Jatim 2024 Speedtest Practice</h1>
       <div class="folder-links">
         <a href="./A1/">Go to A1 Folder</a>
         <a href="./A2/">Go to A2 Folder</a>
         <a href="./B1/">Go to B1 Folder</a>
-        <a href="./B2/">Go to B2 Folder</a>
+        <a href="./B2/" class="completed">Go to B2 Folder</a>
         <a href="./C1/">Go to C1 Folder</a>
         <a href="./C2/">Go to C2 Folder</a>
         <a href="./D1/">Go to D1 Folder</a>
@@ -88,7 +110,7 @@
       </div>
     </div>
     <footer>
-      <p>Belum selesai semua, ehehe 😂</p>
+      <p>Belum selesai semua, ehehe :)</p>
     </footer>
   </body>
 </html>
