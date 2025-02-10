@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Canvas Ball Smooth Follow</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f4f4f4;
+      }
+      canvas {
+        border: 2px solid black;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="ballCanvas" width="400" height="400"></canvas>
+
+    <script>
+      const canvas = document.getElementById("ballCanvas");
+      const ctx = canvas.getContext("2d");
+
+      let ball = {
+        x: canvas.width / 2,
+        y: canvas.height / 2,
+        radius: 20,
+        color: "green",
+        outline: "red",
+        speed: 0.1, // Kecepatan transisi
+      };
+
+      let targetX = ball.x;
+      let targetY = ball.y;
+
+      function drawBall() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height); // Bersihkan canvas
+        ctx.beginPath();
+        ctx.arc(ball.x, ball.y, ball.radius, 0, Math.PI * 2);
+        ctx.fillStyle = ball.color;
+        ctx.fill();
+        ctx.strokeStyle = ball.outline;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+        ctx.closePath();
+      }
+
+      function updatePosition() {
+        // Gunakan interpolasi linear untuk transisi yang lebih smooth
+        ball.x += (targetX - ball.x) * ball.speed;
+        ball.y += (targetY - ball.y) * ball.speed;
+
+        drawBall();
+        requestAnimationFrame(updatePosition); // Loop animasi
+      }
+
+      canvas.addEventListener("mousemove", (event) => {
+        const rect = canvas.getBoundingClientRect();
+        targetX = event.clientX - rect.left;
+        targetY = event.clientY - rect.top;
+      });
+
+      updatePosition(); // Mulai animasi
+    </script>
+  </body>
+</html>
