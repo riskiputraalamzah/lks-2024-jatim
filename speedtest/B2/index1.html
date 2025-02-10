@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5 Stars Rating</title>
+    <style>
+      .rating-container {
+        display: flex;
+        position: relative;
+        width: 250px;
+        height: 50px;
+      }
+
+      /* Lapisan dasar (bintang kosong) */
+      .stars {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        background: url("stars.png") repeat-x;
+        background-size: contain;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      /* Lapisan pengisi dengan background-color */
+      .stars-fill {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 0;
+        background-color: gold; /* Warna emas */
+        mix-blend-mode: multiply; /* Efek pencampuran agar warna menyatu */
+        transition: width 0.3s ease-in-out;
+        clip-path: inset(
+          0 0 0 0
+        ); /* Membatasi pengisian ke dalam area gambar bintang */
+      }
+
+      .rating-overlay {
+        display: flex;
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        cursor: pointer;
+      }
+
+      .rating-overlay span {
+        flex: 1;
+        height: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="rating-container">
+      <div class="stars"><img src="./stars.png" alt="" /></div>
+      <div class="stars-fill">
+        <span></span><span></span><span></span><span></span><span></span>
+      </div>
+      <div class="rating-overlay"></div>
+    </div>
+
+    <script>
+      const starsFill = document.querySelector(".stars-fill");
+      const ratingOverlay = document.querySelector(".rating-overlay");
+
+      ratingOverlay.addEventListener("mousemove", (e) => {
+        const rect = ratingOverlay.getBoundingClientRect();
+        let percent = ((e.clientX - rect.left) / rect.width) * 5; // Skala ke 5 bintang
+        let score = Math.round(percent * 2) / 2; // Pembulatan ke 0.5 terdekat
+        let fillWidth = (score / 5) * 100; // Hitung persentase pengisian
+
+        starsFill.style.width = `${fillWidth}%`;
+      });
+
+      ratingOverlay.addEventListener("mouseleave", () => {
+        starsFill.style.width = "0";
+      });
+    </script>
+  </body>
+</html>

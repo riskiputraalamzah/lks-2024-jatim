@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>5 Stars Rating Animation</title>
+    <style>
+      canvas {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <canvas id="ratingCanvas" width="250" height="50"></canvas>
+    <script>
+      const canvas = document.getElementById("ratingCanvas");
+      const ctx = canvas.getContext("2d");
+      const starImage = new Image();
+      starImage.src = "stars.png";
+      const starWidth = 50;
+      const starHeight = 50;
+      const totalStars = 5;
+      let rating = 0;
+
+      starImage.onload = () => {
+        drawStars();
+      };
+
+      canvas.addEventListener("mousemove", (e) => {
+        const rect = canvas.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        rating = Math.ceil((x / starWidth) * 2) / 2;
+        drawStars();
+      });
+
+      canvas.addEventListener("click", () => {
+        alert(`You rated: ${rating} stars`);
+      });
+
+      function drawStars() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        for (let i = 0; i < totalStars; i++) {
+          const x = i * starWidth;
+          ctx.drawImage(starImage, x, 0, starWidth, starHeight);
+          if (rating > i) {
+            ctx.fillStyle = "rgba(255, 215, 0, 0.5)";
+            ctx.fillRect(x, 0, starWidth * Math.min(rating - i, 1), starHeight);
+          }
+        }
+      }
+    </script>
+  </body>
+</html>

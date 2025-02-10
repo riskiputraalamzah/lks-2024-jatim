@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pricing Table</title>
+    <style>
+      .pricing-table {
+        display: flex;
+        justify-content: space-around;
+        margin: 20px;
+      }
+      .pricing-card {
+        border: 1px solid #ccc;
+        border-radius: 8px;
+        padding: 20px;
+        width: 30%;
+        text-align: center;
+      }
+      .pricing-card h2 {
+        margin-top: 0;
+      }
+      .pricing-card ul {
+        list-style-type: none;
+        padding: 0;
+      }
+      .pricing-card ul li {
+        margin: 10px 0;
+      }
+      .pricing-card button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin-top: 20px;
+        cursor: pointer;
+        border-radius: 4px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pricing-table">
+      <div class="pricing-card">
+        <h2>Silver Pack</h2>
+        <p>$4/month</p>
+        <ul>
+          <li>Deploy in seconds</li>
+          <li>Scale up on demand</li>
+          <li>
+            Run any workload - from mission critical apps to low traffic sites
+          </li>
+        </ul>
+        <button>Purchase</button>
+      </div>
+      <div class="pricing-card">
+        <h2>Gold Pack</h2>
+        <p>$12/month</p>
+        <ul>
+          <li>Simple, managed Kubernetes built for scale</li>
+          <li>Free control plane, free bandwidth allowance, and more</li>
+          <li>Automate and optimize to peak performance</li>
+        </ul>
+        <button>Purchase</button>
+      </div>
+      <div class="pricing-card">
+        <h2>Platinum Pack</h2>
+        <p>$30/month</p>
+        <ul>
+          <li>Build, deploy and scale apps quickly</li>
+          <li>Fully managed solution, zero infrastructure management</li>
+          <li>Highly scalable</li>
+        </ul>
+        <button>Purchase</button>
+      </div>
+    </div>
+  </body>
+</html>
